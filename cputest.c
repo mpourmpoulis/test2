@@ -121,7 +121,7 @@ void prepare(void)
 	strcat(output[0xF0],"64-Byte prefetching\n");
 	strcat(output[0xF1],"128-Byte prefetching\n");
 	strcat(output[0xFF],"CPUID leaf 2 does not report cache descriptor information, use CPUID leaf 4 to query cache parameters\n");
-	strcat(output[0xFF],"CPUID leaf 2 does not report cache descriptor information, use CPUID leaf 4 to query cache parameters\\n");
+	strcat(output[0xFF],"CPUID leaf 2 does not report cache descriptor information, use CPUID leaf 4 to query cache parameters\n");
 }
 
 
@@ -136,6 +136,7 @@ int main(void)
 {
 	prepare();
 	uint8_t byte[16];
+	int extra_round=0;
 	__asm__(
 	"	movl	$0x02,%%eax\n"
 	"	cpuid\n"
@@ -148,7 +149,24 @@ int main(void)
 	qsort(byte,16,sizeof(uint8_t),cmpfunc);
 	if(byte[0]!=0) printf("%s",output[byte[0]]);
 	for(int i=1;i<16;i++){
-		if(byte[i]!=byte[i-1] && byte[i]!=0) printf("%s",output[byte[i]]);
+		if(byte[i]!=byte[i-1] && byte[i]!=0 && byte[i] != 0xFF) printf("%s",output[byte[i]]);
+		if(byte[i] == 0xFF) extra_round=1;
 	}
+	__asm__(
+	"	movl	$0x04,%%eax\n"
+	"	cpuid\n"
+	"	movl	%%eax,%0\n"
+	"	movl	%%ebx,%1\n"
+	"	movl	%%ecx,%2\n"
+	"	movl	%%edx,%3\n"
+	:	"=m" (byte[0]), "=m" (byte[4]),"=m" (byte[8]), "=m" (byte[12])
+	);
+	qsort(byte,16,sizeof(uint8_t),cmpfunc);
+	if(byte[0]!=0) printf("%s",output[byte[0]]);
+	for(int i=1;i<16;i++){
+		if(byte[i]!=byte[i-1] && byte[i]!=0 && byte[i] != 0xFF) printf("%s",output[byte[i]]);
+		//if(byte[i] == 0xFF) extra_round=1;
+	}	
 	return 0;
+	
 }
