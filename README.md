@@ -24,7 +24,7 @@ Period | Freq(Synth) | 2 | 3 | 4 | 6 | R
 3.921ns|255.069MHz|128|544|128|128|672
 
 
-
+![](https://github.com/mpourmpoulis/PythonVoiceCodingPlugin/blob/master/doc/gif/d2.gif)
 
 
 
