@@ -1,3 +1,54 @@
+# import openfst_python as fst
+import re
 
-fun ${1:f} [] $2 ${3:acc} = $3
-   |$1 $4::$4s $2 $3 = $1 4$s $2 $3$0;
+from collections import Counter
+from itertools import  chain
+
+
+
+def extract_from_tokens(tokens,word_level,information):
+	if word_level==False:
+		if information != "bigram":
+			tokens = chain.from_iterable(tokens)
+	if information=="lexicon":
+		return list(Counter(tokens))
+	elif information=="unigram":
+		c = Counter(tokens)
+		total = sum(c)
+		return {k:(v/total) for k,v in dict(c).items()}
+	elif information=="bigram":
+		c = Counter([(b,a)  for x in tokens for b,a in zip(tokens[:-1],tokens[1:])])
+		total = sum(c)
+		return {k:(v/total) for k,v in dict(c).items()}
+	else:
+		return []
+
+def alphabet_to_indices(alphabet):
+	temporary = {x:i+1  for i,x in  enumerate(alphabet)}
+	temporary["<epsilon>"] = 0
+	return temporary
+
+def symbols_string(alphabet):
+	return "\n".join([k +" "+ str(v)  for k,v in alphabet.items()]) + "\n"
+
+
+################################################################
+
+def create_levenshtein(alphabet, weight = None,unigram_model = None,bigram_model = None):
+	f = fst.Fst()
+	if unigram_model:
+		return None
+	if bigram_model:
+		return None
+	if weight:
+		state_number = f.add_state()
+		f.set_initial(state_number)
+		for x in alphabet:
+			for y in alphabet:
+				if x is not y:
+					f.add_arc(state_number,fst)
+
+
+	return None
+
+
