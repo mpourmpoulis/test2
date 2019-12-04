@@ -29,3 +29,14 @@ Period | Freq(Synth) | 2 | 3 | 4 | 6 | R
 
 
 gggg
+
+
+[1] https://www.researchgate.net/publication/252066408_Finite-state_spell-checking_with_weighted_language_and_error_models
+
+
+[2] http://www.openfst.org/twiki/bin/view/Forum/FstForum#Delayed%20composition%20via%20Python%20A
+
+[3] https://www.aclweb.org/anthology/W16-2324/
+
+
+This latency might be due concerns raised in [2] that is through the scripting api, compositiona are performed fully before taking shortest paths. In contrast, in [3] it appears to me that the composition is performed on a more "lazy" manner to get speed.
