@@ -2,7 +2,7 @@
 	"schema_version": "3.0.0",
 	"packages": [
   {
-			"name": "PythonVoiceCodingPlugin",
+			"name": "PythonVoiceCodingPlugin2",
 			"details":"https://github.com/mpourmpoulis/PythonVoiceCodingPlugin",
 			"labels":["voice coding","accessibility","syntax tree","python","grammar","high level"],
 			"releases":[
