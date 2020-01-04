@@ -1,11 +1,16 @@
 {
 	"schema_version": "3.0.0",
 	"packages": [
-  {
+  		{
 			"name": "PythonVoiceCodingPlugin2",
-			"details":"https://github.com/mpourmpoulis/PythonVoiceCodingPlugin/tree/fix_package_control",
-			
-			
-		},
-    ],
+			"details":"https://github.com/mpourmpoulis/PythonVoiceCodingPlugin/tree/fix_package_control"
+			"labels":["voice coding","accessibility","syntax tree","python","grammar","high level"],
+			"releases":[
+				{
+					"sublime_text":">=3000",
+					"branch":"fix_package_control"
+				}
+			]
+		}
+    	]
 }
