@@ -3,7 +3,7 @@
 	"packages": [
   		{
 			"name": "PythonVoiceCodingPlugin2",
-			"details":"https://github.com/mpourmpoulis/PythonVoiceCodingPlugin/tree/fix_package_control"
+			"details":"https://github.com/mpourmpoulis/PythonVoiceCodingPlugin/tree/fix_package_control",
 			"labels":["voice coding","accessibility","syntax tree","python","grammar","high level"],
 			"releases":[
 				{
