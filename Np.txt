@@ -1,3 +1,6 @@
+
+powershell Compress-Archive . publish.zip
+
 # import openfst_python as fst
 import re
 
